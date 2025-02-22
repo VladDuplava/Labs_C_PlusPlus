@@ -1,5 +1,5 @@
 #include <iostream>
-
+//test github
 int main() {
     int N;
     std::cout << "Введіть розмір масиву: ";
