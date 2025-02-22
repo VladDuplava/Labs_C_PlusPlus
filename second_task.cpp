@@ -3,24 +3,26 @@
 using namespace std;
 
 int main() {
-    int N; 
+    int N;
     cout << "Введіть розмір масиву: ";
     cin >> N;
 
-    int* A = new int[N];
+    int A[N];
 
     cout << "Введіть елементи масиву: ";
     for (int i = 0; i < N; i++) {
         cin >> A[i];
     }
 
-    int T; 
+    int T;
     cout << "Введіть число T: ";
     cin >> T;
 
-    int* firstElemT = nullptr; 
-    int* maxNegPtr = nullptr; 
+    int* firstElemT = nullptr;
+    int* maxNegativePointer = nullptr;
 
+    //p вказівник на елемент масиву
+    //firstElemT це вказівник на поточний елемемнт який більший за T
     for (int* p = A; p < A + N; p++) {
         if (*p > T) {
             firstElemT = p;
@@ -28,25 +30,23 @@ int main() {
         }
     }
 
-    if (!firstElemT) {
+    if (firstElemT == nullptr) {
         cout << "Немає числа > T" << endl;
-        delete[] A; 
         return 0;
     }
 
+
     for (int* p = A; p < firstElemT; p++) {
-        if (*p < 0 && (!maxNegPtr || *p > *maxNegPtr)) {
-            maxNegPtr = p;
+        if (*p < 0 && (maxNegativePointer == nullptr || *p > *maxNegativePointer)) {
+            maxNegativePointer = p;
         }
     }
 
-    if (maxNegPtr) {
-        cout << "Індекс першого максимального від’ємного елемента: " << (maxNegPtr - A) << endl;
+    if (maxNegativePointer) {
+        cout << "Індекс першого максимального від’ємного елемента: " << (maxNegativePointer - A) << endl;
     } else {
         cout << "Немає від’ємних чисел до T" << endl;
     }
-
-    delete[] A; 
 
     return 0;
 }
